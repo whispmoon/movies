@@ -1,0 +1,119 @@
+body {
+    background-color: #ecf0f1;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+/****
+HEADER
+*****/
+
+header {}
+
+h1 {
+    border: 1px solid black;
+    text-align: center;
+}
+
+.top {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.login {
+    display: flex;
+    width: 20%;
+    border: 1px solid black;
+}
+
+.pub {
+    border: 1px solid black;
+    width: 80%;
+}
+
+.search {
+    width: 20%;
+    border: 1px solid black;
+}
+
+
+/****
+CONTAINER
+*****/
+
+h2 {
+    text-align: center;
+}
+
+.container h2 {
+    color: red;
+}
+
+.middle {
+    display: flex;
+}
+
+nav {
+    width: 20%;
+    border-radius: 10px;
+    background-color: #bdc3c7;
+}
+
+.container {
+    border: 1px solid black;
+    width: 80%;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+aside {
+    width: 20%;
+    border-radius: 10px;
+    background-color: #bdc3c7;
+}
+
+img {
+    width: 100px;
+    height: 120px;
+    padding: 0%;
+    margin: 0%;
+}
+
+figure {
+    display: inline-block;
+    margin-top: 25px;
+    margin-left: 50px;
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.3);
+}
+
+figure:nth-child(even) {
+    transform: rotate(-4deg);
+}
+
+figure:hover {
+    transform: scale(1.3);
+    transition: all 0.1s ease-in-out;
+}
+
+figcaption {
+    color: whitesmoke;
+    background-color: black;
+    padding: 0%;
+    margin: 0%;
+    text-align: center;
+    width: 100%;
+}
+
+a {
+    margin: 0%;
+}
+
+
+/****
+FOOTER
+*****/
+
+footer {
+    border: 1px solid black;
+}
