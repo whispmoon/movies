@@ -11,19 +11,20 @@
 	<h1>LOREM BACON</h1>
 	<div class="top" >
 		<div class="login">
-			<h2>login</h2>
+			<a>LOGIN</a>
 		</div>
 		<div class="pub" >
-			<h2>Pub</h2>
+			<p>Votre PUB ICI !!!!!!</p>
 		</div>
-		<div class="search" >
-			<h2>search</h2>
-		</div>
+			<form action="" method="post" class="search">
+				<input type="text" name="recherche" placeholder="Saisissez votre recherche ici">
+				<input type="submit" name="form" value="Rechercher">
+			</form>
 	</div>
 	</header>
-	<div class="middle" >
+	<div class="middle">
 		<nav>
-			<h2>nav</h2>
+			<a href="<?=BASE_URL?>">Home</a>
 		</nav>
 		<div class="container">
 
@@ -34,12 +35,12 @@
 		<aside>
 			<h2>TOP RATED</h2>
 				<ul>
-					<?php foreach($movies as $movie): 
-					if($movie->getRating() > 8.5){ ?>
+					<?php foreach($movies as $movie): ?>
+					
 					<li>
-						<a href="<?=BASE_URL?>details?id=<?= $movie->getId()?>"><?= $movie->getTitle()?></a>
+						<a href="<?=BASE_URL?>movieDetails?id=<?= $movie->getId()?>"><?= $movie->getTitle()?></a>
 					</li>
-					<?php }endforeach; ?>
+					<?php endforeach; ?>
 				</ul>
 		</aside>
 	</div>

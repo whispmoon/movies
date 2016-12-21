@@ -13,7 +13,7 @@ class DefaultController
 	public function home()
 	{
     $moviesManager = new MoviesManager();
-    $movies = $moviesManager->findAll();
+    $movies = $moviesManager->findTopRated();
 
        // affiche la vue en lui passant le movies 
         View::show("home.php", "Accueil !",["movies"=> $movies]);
@@ -22,8 +22,10 @@ class DefaultController
 		/**
 	 * Affiche la page de consultation
 	 */
-	     public function moviesDetails()
+	     public function movieDetails()
     {
+		$moviesManager = new MoviesManager();
+    	$movies = $moviesManager->findTopRated();
         // créé une instance de manager
        $moviesManager = new \Model\Manager\MoviesManager();
        // créé le movies dont l'id est dans l'URL
@@ -34,7 +36,7 @@ class DefaultController
        }
 
        // affiche la vue en lui passant le movies 
-        View::show("movieDetails.php", $movie->getTitle(),["movies"=> $movie] );
+        View::show("movieDetails.php", $movie->getTitle(),["movie"=> $movie,"movies"=> $movies] );
     }
 
 	/**

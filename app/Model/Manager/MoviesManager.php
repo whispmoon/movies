@@ -61,5 +61,17 @@ class MoviesManager
         $stmt->bindValue("trailerUrl",$movies->getTrailerUrl());
         return $stmt->execute();
     }
+        public function findTopRated()
+    {
+        $sql = "SELECT id, imdbId, title, year, cast, directors, writers, plot, rating, votes,runtime, trailerUrl, dateCreated, dateModified
+        FROM movies WHERE rating > 8.5";
+        $dbh = Db::getDbh();
+
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute();
+        $results = $stmt->fetchAll(\PDO::FETCH_CLASS,'\Model\Entity\Movies');
+
+        return $results;
+    }
 
 }
