@@ -25,18 +25,16 @@
 	<div class="middle">
 		<nav>
 			<a href="<?=BASE_URL?>">Home</a>
+			<a href="<?=BASE_URL?>/toprated">Top rated</a>
 		</nav>
 		<div class="container">
-
 			<?php //include le fichier spécifié à la fin des méthodes de contrôleurs ?>
 			<?php include("app/templates/$page.php") ?>
-		
 		</div>
 		<aside>
 			<h2>TOP RATED</h2>
 				<ul>
 					<?php foreach($movies as $movie): ?>
-					
 					<li>
 						<a href="<?=BASE_URL?>movieDetails?id=<?= $movie->getId()?>"><?= $movie->getTitle()?></a>
 					</li>

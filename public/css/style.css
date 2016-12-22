@@ -14,6 +14,7 @@ header {
 
 h1 {
     text-align: center;
+    color: #9b59b6;
 }
 
 .top {
@@ -66,14 +67,23 @@ NAV
 nav {
     width: 20%;
     border-radius: 10px;
-    background-color: #bdc3c7;
+    /*background-color: #bdc3c7;*/
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 nav a {
     padding-top: 20px;
     width: 100%;
     height: 30px;
+    background-color: #bdc3c7;
+    opacity: 0.8;
+    border-radius: 4px;
+}
+
+nav a:hover {
+    opacity: 1.2;
 }
 
 
@@ -104,6 +114,7 @@ img {
     height: 120px;
     padding: 0%;
     margin: 0%;
+    border-radius: 4px;
 }
 
 
@@ -112,12 +123,14 @@ FIGURE
 *****/
 
 figure {
+    border-radius: 4px;
+    background-color: black;
     display: flex;
     justify-content: space-between;
     opacity: 0.8;
     display: inline-block;
-    margin-top: 25px;
-    margin-left: 15px;
+    margin-top: 5px;
+    margin-left: 5px;
     box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.3);
 }
 
@@ -128,6 +141,7 @@ figure:hover {
 }
 
 figcaption {
+    border-radius: 4px;
     color: whitesmoke;
     background-color: black;
     padding: 0%;
@@ -182,4 +196,7 @@ section {
 FOOTER
 *****/
 
-footer {}
+footer {
+    background-color: #9b59b6;
+    border-radius: 4px;
+}

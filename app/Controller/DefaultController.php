@@ -13,10 +13,19 @@ class DefaultController
 	public function home()
 	{
     $moviesManager = new MoviesManager();
-    $movies = $moviesManager->findTopRated();
+    $currentPage =(empty($_GET['page'])) ? 1 : $_GET['page'];
+	$homeMovies = $moviesManager->findHomeMovies($currentPage);
+	$movies = $moviesManager->findTopRated();
+	
 
+	$data =[
+		"homeMovies" =>$homeMovies,
+		"movies"=>$movies,
+		// "moviesCount"=>$count,
+		"currentPage"=>$currentPage,
+	];
        // affiche la vue en lui passant le movies 
-        View::show("home.php", "Accueil !",["movies"=> $movies]);
+        View::show("home.php", "Accueil !",$data);
     }
 
 		/**
@@ -111,5 +120,22 @@ if ($_FILES['image']['error'] !=4){
         View::show("movies_create.php","Publier un nouvel article !", ["movies" => $movies]);
    
     }
+public function toprated()
+	{
+    $moviesManager = new MoviesManager();
+    
+	$movies = $moviesManager->findTopRated();
+
+	$currentPage =(empty($_GET['page'])) ? 1 : $_GET['page'];
+
+	$data =[
+		"movies" =>$movies,
+		"currentPage"=>$currentPage,
+	];
+       // affiche la vue en lui passant le movies 
+        View::show("toprated.php", "Top rated !",$data);
+    }
+
+
 
 }

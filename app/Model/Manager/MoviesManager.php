@@ -30,18 +30,6 @@ class MoviesManager
         return $result;   
     }
     
-    public function findAll()
-    {
-        $sql = "SELECT id, imdbId, title, year, cast, directors, writers, plot, rating, votes,runtime, trailerUrl, dateCreated, dateModified
-        FROM movies";
-        $dbh = Db::getDbh();
-
-        $stmt = $dbh->prepare($sql);
-        $stmt->execute();
-        $results = $stmt->fetchAll(\PDO::FETCH_CLASS,'\Model\Entity\Movies');
-
-        return $results;
-    }
     public function create(Movies $movies){
         $sql = "INSERT INTO movies (id,imdbId, title, year, cast, directors, writers, plot, rating, votes,runtime, trailerUrl, dateCreated, dateModified)
                          VALUES (:id,:imdbId, :title, :year, :cast, :directors, :writers, :plot, :rating, :votes,:runtime, :trailerUrl, :dateCreated, NOW())";
@@ -73,5 +61,33 @@ class MoviesManager
 
         return $results;
     }
+
+    public function countAll(){
+        $sql = "SELECT COUNT (*) FROM movies";
+        $stmt= $dbh->prepare($sql);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+
+        return $count;
+    }
+
+public function findHomeMovies($page){
+
+        $numPerPage =15; //nbre de film par page
+        $offset =($page-1)*$numPerPage; //nbre de films à sauter
+        $sql = "SELECT *
+                FROM movies
+                ORDER BY rating DESC
+                LIMIT $numPerPage  
+                OFFSET $offset";
+                //LIMIT : nbre de lignes à récupérer
+                //offset permet de dire le nbre de lignes à sauter (ici il commence à la 7eme ligne)        //ici on va se connecter à la db
+        $dbh = Db::getDbh();        //on prépare la requête avec la fonction interne à PHP
+        $stmt= $dbh->prepare($sql);
+        //on l'execute avec la fonction interne à PHP
+        $stmt->execute();
+        //fetchAll parcourt les résultats
+        $results =$stmt->fetchAll(\PDO::FETCH_CLASS,'\Model\Entity\Movies');
+        return $results;    }
 
 }
