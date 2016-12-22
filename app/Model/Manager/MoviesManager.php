@@ -52,7 +52,7 @@ class MoviesManager
         public function findTopRated()
     {
         $sql = "SELECT id, imdbId, title, year, cast, directors, writers, plot, rating, votes,runtime, trailerUrl, dateCreated, dateModified
-        FROM movies WHERE rating > 8.5";
+        FROM movies WHERE rating > 8.5 ORDER BY rating DESC";
         $dbh = Db::getDbh();
 
         $stmt = $dbh->prepare($sql);

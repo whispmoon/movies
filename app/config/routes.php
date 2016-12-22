@@ -27,5 +27,6 @@
 		"/research"=>"research",
 		"/createMovies"=>"createMovies",
 		"/researchResult"=>"researchResult",
+		"/createMovies"=>"createMovies",
 		
 	];

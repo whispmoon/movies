@@ -1,3 +1,4 @@
+<h2>Your result</h2>
 <div class="movies">
         <?php foreach($search as $movie): ?>
         <figure>
