@@ -136,6 +136,57 @@ public function toprated()
         View::show("toprated.php", "Top rated !",$data);
     }
 
+	public function connexion(){
+	$moviesManager = new MoviesManager();
+    
+	$movies = $moviesManager->findTopRated();
 
+		View::show("connexion.php", "connexion !",["movies" => $movies]);
+	}
+
+	public function deconnexion(){
+	$moviesManager = new MoviesManager();
+    
+	$movies = $moviesManager->findTopRated();
+		View::show("deconnexion.php", "deconnexion !",["movies" => $movies]);
+	}
+
+	public function inscription(){
+	$moviesManager = new MoviesManager();
+    
+	$movies = $moviesManager->findTopRated();
+		View::show("inscription.php", "inscription !",["movies" => $movies]);
+	}
+
+	public function researchResult(){
+	$moviesManager = new MoviesManager();
+	$movies = $moviesManager->findTopRated();
+	$search = $moviesManager->findTitleMovies();
+
+			$data =[
+		"movies" =>$movies,
+		"search"=>$search,
+	];
+		View::show("researchResult.php", "researchResult !",$data);
+	}
+
+	public function nav(){
+
+		$moviesManager = new MoviesManager();
+		$movies = $moviesManager->findTopRated();
+		View::show("nav.php", "nav !",["movies" => $movies]);
+	}
+
+	public function research(){
+	$moviesManager = new MoviesManager();
+	$movies = $moviesManager->findTopRated();
+	$search = $moviesManager->findTitleMovies();
+
+			$data =[
+		"movies" =>$movies,
+		"search"=>$search,
+	];
+		View::show("researchResult.php", "researchResult !",$data);
+	}
 
 }

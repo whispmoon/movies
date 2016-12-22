@@ -19,4 +19,13 @@
 		"/consult"=>"consult",
 		"/movieDetails"=>"movieDetails",
 		"/toprated"=>"toprated",
+		"/connexion"=>"connexion",
+		"/deconnexion"=>"deconnexion",
+		"/nav"=>"nav",
+		"/secure"=>"secure",
+		"/inscription"=>"inscription",
+		"/research"=>"research",
+		"/createMovies"=>"createMovies",
+		"/researchResult"=>"researchResult",
+		
 	];

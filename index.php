@@ -1,4 +1,10 @@
 <?php
+
+
+	//on prévient qu'on va utiliser la session
+	session_start();
+
+
 	//ceci est le contrôleur frontal
 	//il doit être short & sweet
 

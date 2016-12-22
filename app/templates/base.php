@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,17 +9,17 @@
 </head>
 <body>
 	<header>
-	<h1>LOREM BACON</h1>
+	<h1>MOVIES</h1>
 	<div class="top" >
 		<div class="login">
-			<a>LOGIN</a>
+			<?php include("app/templates/nav.php") ?>
 		</div>
 		<div class="pub" >
-			<p>Votre PUB ICI !!!!!!</p>
+			<?php include("app/templates/connexion.php") ?>
 		</div>
-			<form action="" method="post" class="search">
-				<input type="text" name="recherche" placeholder="Saisissez votre recherche ici">
-				<input type="submit" name="form" value="Rechercher">
+			<form action="<?=BASE_URL?>/researchResult" method="get" class="researchBar">
+				<input type="text" name="research" placeholder="research">
+				<input type="submit" value="Research">
 			</form>
 	</div>
 	</header>
@@ -26,6 +27,10 @@
 		<nav>
 			<a href="<?=BASE_URL?>">Home</a>
 			<a href="<?=BASE_URL?>/toprated">Top rated</a>
+			<a href="<?=BASE_URL?>/connexion">Connexion</a>
+			<a href="<?=BASE_URL?>/deconnexion">Deconnexion</a>
+			<a href="<?=BASE_URL?>/research">Research</a>
+			<a href="<?=BASE_URL?>/createMovies">Create</a>
 		</nav>
 		<div class="container">
 			<?php //include le fichier spécifié à la fin des méthodes de contrôleurs ?>

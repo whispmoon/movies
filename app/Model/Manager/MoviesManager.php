@@ -90,4 +90,19 @@ public function findHomeMovies($page){
         $results =$stmt->fetchAll(\PDO::FETCH_CLASS,'\Model\Entity\Movies');
         return $results;    }
 
+        public function findTitleMovies(){
+
+        $search = $_GET['research'];
+        $sql = "SELECT * FROM movies WHERE title LIKE :search";
+        $dbh = Db::getDbh();
+        $stmt= $dbh->prepare($sql);
+        $stmt->bindValue(":search", '%'.$search.'%');
+        $stmt->execute();
+        $search = $stmt->fetchAll(\PDO::FETCH_CLASS,'\Model\Entity\Movies');
+        // var_dump($search);
+        return $search;
+        }
+
 }
+
+        
