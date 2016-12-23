@@ -26,7 +26,7 @@
 ?>
 
 
-		<form method="POST">
+		<form method="POST"enctype="multipart/form-data" class="formConnexion" >
 			<div>
 				<label for="usernameOrEmail">Pseudo ou email</label>
 				<input type="text" name="usernameOrEmail" id="usernameOrEmail" value="">

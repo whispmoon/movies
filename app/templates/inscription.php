@@ -39,10 +39,18 @@
 
 ?>
 
-		<form method="POST">
+		<form method="POST" enctype="multipart/form-data" class="formInscription" >
 			<div>
-				<label for="username">Pseudo</label>
-				<input type="text" name="username" id="username" value="">
+				<label for="first_name">First name</label>
+				<input type="first_name" name="first_name" id="first_name" value="">
+			</div>
+			<div>
+				<label for="last_name">Last name</label>
+				<input type="last_name" name="last_name" id="last_name" value="">
+			</div>
+			<div>
+				<label for="user_name">Pseudo</label>
+				<input type="text" name="user_name" id="user_name" value="">
 			</div>
 			<div>
 				<label for="email">Email</label>

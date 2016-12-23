@@ -31,22 +31,22 @@ class MoviesManager
     }
     
     public function create(Movies $movies){
-        $sql = "INSERT INTO movies (id,imdbId, title, year, cast, directors, writers, plot, rating, runtime, trailerUrl, dateCreated, dateModified)
-                         VALUES (:id,:imdbId, :title, :year, :cast, :directors, :writers, :plot, :rating, :runtime, :trailerUrl, :dateCreated, NOW())";
+        $sql = "INSERT INTO movies (imdbId, title, year, cast, directors, writers, plot, rating, runtime, trailerUrl, dateCreated, dateModified)
+                         VALUES (:imdbId, :title, :year, :cast, :directors, :writers, :plot, :rating, :runtime, :trailerUrl, :dateCreated, NOW())";
 
         $dbh = Db::getDbh();
         $stmt = $dbh->prepare($sql);
-        $stmt->bindValue("title",$movies->getTitle());
-        $stmt->bindValue("imdbId",$movies->getImdbId());
+        $stmt->bindValue(":title",$movies->getTitle());
+        $stmt->bindValue(":imdbId",$movies->getImdbId());
         $stmt->bindValue(":year", $movies->getYear());
         $stmt->bindValue(":cast", $movies->getCast());
-        $stmt->bindValue("directors",$movies->getDirectors());
-        $stmt->bindValue("writers",$movies->getWriters());
-        $stmt->bindValue("plot",$movies->getPlot());
-        $stmt->bindValue("rating",$movies->getRating());
-        $stmt->bindValue("runtime",$movies->getRuntime());
-        $stmt->bindValue("trailerUrl",$movies->getTrailerUrl());
-        $stmt->bindValue("dateCreated",$movies->getDateCreated());
+        $stmt->bindValue(":directors",$movies->getDirectors());
+        $stmt->bindValue(":writers",$movies->getWriters());
+        $stmt->bindValue(":plot",$movies->getPlot());
+        $stmt->bindValue(":rating",$movies->getRating());
+        $stmt->bindValue(":runtime",$movies->getRuntime());
+        $stmt->bindValue(":trailerUrl",$movies->getTrailerUrl());
+        $stmt->bindValue(":dateCreated",$movies->getDateCreated());
         return $stmt->execute();
     }
         public function findTopRated()
@@ -95,7 +95,15 @@ public function findHomeMovies($page){
         public function findTitleMovies(){
 
         $search = $_GET['research'];
-        $sql = "SELECT * FROM movies WHERE title LIKE :search";
+        $sql = "SELECT * FROM movies WHERE title LIKE :search
+                                        OR year LIKE :search
+                                        OR cast LIKE :search
+                                        OR directors LIKE :search
+                                        OR writers LIKE :search
+                                        OR plot LIKE :search                    
+                                        OR rating LIKE :search
+                                        OR runtime LIKE :search
+                                                                ";
         $dbh = Db::getDbh();
         $stmt= $dbh->prepare($sql);
         $stmt->bindValue(":search", '%'.$search.'%');
@@ -105,9 +113,21 @@ public function findHomeMovies($page){
         return $search;
         }
 
+        public function createUsers(){
+            $sql = "INSERT INTO users (first_name, last_name, user_name, password, email,)
+                            VALUES (:first_name, :last_name, :user_name, :password, :email,)";
 
+            $dbh = Db::getDbh();
+            $stmt = $dbh->prepare($sql);
+            $stmt->bindValue(":first_name",$movies->getFirst_name());
+            $stmt->bindValue(":last_name",$movies->getlast_name());
+            $stmt->bindValue(":user_name", $movies->getUser_name());
+            $stmt->bindValue(":password", $movies->getPassword());
+            $stmt->bindValue(":email",$movies->getEmail());
+
+            return $stmt->execute();
 
 
 }
-
+}
         

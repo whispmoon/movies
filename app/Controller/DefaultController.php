@@ -161,7 +161,12 @@ public function deconnexion(){
 
 public function inscription(){
 		
-    
+			$users->setFirst_name($_POST['first_name']);
+			$users->setLast_name($_POST['last_name']);
+			$users->setUser_name($_POST['user_name']);
+			$users->setPassword($_POST['password']);
+			$users->setEmail($_POST['email']);
+			    
 		
 		View::show("inscription.php", "inscription !");
 	}

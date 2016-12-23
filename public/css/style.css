@@ -156,6 +156,28 @@ li {
 
 
 /****
+FORM INSCRIPTION
+*****/
+
+.formInscription {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/****
+FORM CONNEXION
+*****/
+
+.formConnexion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/****
 FIGURE
 *****/
 
@@ -224,7 +246,7 @@ DETAIL
 
 .detailImdb img {
     width: 100%;
-    height: 80%;
+    height: 500px;
     border-top-left-radius: 10px;
     box-shadow: none !important;
 }
