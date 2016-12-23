@@ -1,9 +1,9 @@
 
 
 
-<div class="research">
-    <h2>RESEARCH</h2>
-    <form class="research" type="form" method"post">
+<div class="createmovies">
+    <h2>CREATE MOVIE</h2>
+    <form class="createmovies" type="form" method="post" enctype="multipart/form-data">
         <label for="title">Title</label>
         <input type="title" name="title" >
 
@@ -30,13 +30,16 @@
 
                 <label for="dateCreated">Date created</label>
         <input type="dateCreated" name="dateCreated" >
+
+                        <label for="trailerUrl">Tailer URL</label>
+        <input type="trailerUrl" name="trailerUrl" >
         <div>
-                <label for="image">Image:</label> 
-                <input type="file" name="image">
+                <label for="imdbId">Image:</label> 
+                <input type="file" name="imdbId">
         </div>
         <?php
-                if(!empty($post->getValidationErrors())){
-                        foreach($post->getValidationErrors() as $error){
+                if(!empty($movies->getValidationErrors())){
+                        foreach($movies->getValidationErrors() as $error){
                         echo '<p>'. $error . '<p>';
                         }
                 }

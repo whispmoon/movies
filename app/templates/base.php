@@ -29,7 +29,7 @@
 			<a href="<?=BASE_URL?>/toprated">Top rated</a>
 			<a href="<?=BASE_URL?>/connexion">Connexion</a>
 			<a href="<?=BASE_URL?>/deconnexion">Deconnexion</a>
-			<a href="<?=BASE_URL?>/research">Research</a>
+			<a href="<?=BASE_URL?>/inscription">Inscription</a>
 			<a href="<?=BASE_URL?>/createMovies">Create</a>
 		</nav>
 		<div class="container">
@@ -38,13 +38,8 @@
 		</div>
 		<aside>
 			<h2>TOP RATED</h2>
-				<ul>
-					<?php foreach($movies as $movie): ?>
-					<li>
-						<a href="<?=BASE_URL?>movieDetails?id=<?= $movie->getId()?>"><?= $movie->getTitle()?></a>
-					</li>
-					<?php endforeach; ?>
-				</ul>
+			<?php \Controller\DefaultController::asideTopRated() ?>
+			<?php \Controller\DefaultController::countAll() ?>
 		</aside>
 	</div>
 	<footer>

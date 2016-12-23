@@ -28,5 +28,7 @@
 		"/createMovies"=>"createMovies",
 		"/researchResult"=>"researchResult",
 		"/createMovies"=>"createMovies",
+		"/asidetoprated"=>"asidetoprated",
+		"/countall"=>"countall",
 		
 	];

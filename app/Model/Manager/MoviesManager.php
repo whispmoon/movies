@@ -31,8 +31,8 @@ class MoviesManager
     }
     
     public function create(Movies $movies){
-        $sql = "INSERT INTO movies (id,imdbId, title, year, cast, directors, writers, plot, rating, votes,runtime, trailerUrl, dateCreated, dateModified)
-                         VALUES (:id,:imdbId, :title, :year, :cast, :directors, :writers, :plot, :rating, :votes,:runtime, :trailerUrl, :dateCreated, NOW())";
+        $sql = "INSERT INTO movies (id,imdbId, title, year, cast, directors, writers, plot, rating, runtime, trailerUrl, dateCreated, dateModified)
+                         VALUES (:id,:imdbId, :title, :year, :cast, :directors, :writers, :plot, :rating, :runtime, :trailerUrl, :dateCreated, NOW())";
 
         $dbh = Db::getDbh();
         $stmt = $dbh->prepare($sql);
@@ -44,9 +44,9 @@ class MoviesManager
         $stmt->bindValue("writers",$movies->getWriters());
         $stmt->bindValue("plot",$movies->getPlot());
         $stmt->bindValue("rating",$movies->getRating());
-        $Rtmt->bindValue("votes",$movies->getVotes());
         $stmt->bindValue("runtime",$movies->getRuntime());
         $stmt->bindValue("trailerUrl",$movies->getTrailerUrl());
+        $stmt->bindValue("dateCreated",$movies->getDateCreated());
         return $stmt->execute();
     }
         public function findTopRated()
@@ -63,7 +63,8 @@ class MoviesManager
     }
 
     public function countAll(){
-        $sql = "SELECT COUNT (*) FROM movies";
+        $sql = "SELECT COUNT(*) FROM movies";
+        $dbh = Db::getDbh();
         $stmt= $dbh->prepare($sql);
         $stmt->execute();
         $count = $stmt->fetchColumn();
@@ -77,7 +78,7 @@ public function findHomeMovies($page){
         $offset =($page-1)*$numPerPage; //nbre de films à sauter
         $sql = "SELECT *
                 FROM movies
-                ORDER BY rating DESC
+                ORDER BY rating ASC
                 LIMIT $numPerPage  
                 OFFSET $offset";
                 //LIMIT : nbre de lignes à récupérer
@@ -88,7 +89,8 @@ public function findHomeMovies($page){
         $stmt->execute();
         //fetchAll parcourt les résultats
         $results =$stmt->fetchAll(\PDO::FETCH_CLASS,'\Model\Entity\Movies');
-        return $results;    }
+        return $results;    
+        }
 
         public function findTitleMovies(){
 
@@ -102,6 +104,9 @@ public function findHomeMovies($page){
         // var_dump($search);
         return $search;
         }
+
+
+
 
 }
 

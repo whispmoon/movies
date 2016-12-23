@@ -58,75 +58,74 @@ class DefaultController
 		View::show("errors/404.php", "Oups ! Perdu ?");
 	}
     //Crée un nouvel article. affiche et traite le formulaire
+
+
     public function createMovies()
     {
 				// on crée une nouvelle instance d'article
-				$movies = new \Model\Entity\Movies();
-
+		$movies = new \Model\Entity\Movies();
 				// Si le formuklaire est soumis ...
-			if(!empty($_movies)){
-
-				// validation du fichjier uploadé
-
-
+		if(!empty($_POST)){
+				// validation du fichier uploadé
 				// Si le fichier a bien été envoyé ...
-		if ($_FILES['imdbId']['error'] !=4){
+
+			if ($_FILES['imdbId']['error'] !=4){
 				//type mime
 				$file = $_FILES['imdbId']['tmp_name'];
 				$finfo = finfo_open(FILEINFO_MIME_TYPE);
 				$mime = finfo_file($finfo,$file);
 				finfo_close($finfo);
-
 				$uploadError = null;
+
 				if (substr($mime, 0, 5) !="imdbId"){
 					$uploadError = "Mimetype invalide";
 				}
 				// taille
+
 				if($_FILES['imdbId']['size'] >100000){
 					$uploadError = "Fichier trop grand";
 				}
 				
 				// vérifier les erreurs d'upload
-
 				if($_FILES['imdbId']['error'] !==0){
 					$uploadError = "Une erreur est survenue";
 				}
 				// si on a pas d'erreur...
 				if($uploadError == null){
-				// si ok, on déplace /redimmensionne / contertir en jpg
+					// si ok, on déplace /redimmensionne / contertir en jpg
 
-				$img = new \abeautifulsite\simpleimage($file);
-				$destination = uniqid().".jpg"; // nom du fichier
-				$img->best_fit(300,300)
-					->desaturate()->save(UPLOAD_DIR.  $destination );
-				// on hydrate la propriété dans l'objet
-				$movies->setImdbId($destination);
+					$img = new \abeautifulsite\simpleimage($file);
+					$destination = uniqid().".jpg"; // nom du fichier
+					$img->best_fit(300,300)
+						->save(UPLOAD_DIR.  $destination );
+					// on hydrate la propriété dans l'objet
+					$movies->setImdbId($destination);
 				}
-		}
+			}
 
-				//hydrate l'instance à partir des données du form
-				$movies->setTitle($_POST['title']);
-				$movies->setcast($_POST['cast']);
-				$movies->setDirectors($_POST['directors']);
-				$movies->setWriters($_POST['writers']);
-				$movies->setRating($_POST['rating']);
-				$movies->setRuntime($_POST['runtime']);
-				$movies->setTrailerUrl($_POST['trailerUrl']);
-				$movies->setDateCreated($_POST['dateCreated']);
+			//hydrate l'instance à partir des données du form
+			$movies->setTitle($_POST['title']);
+			$movies->setcast($_POST['cast']);
+			$movies->setDirectors($_POST['directors']);
+			$movies->setWriters($_POST['writers']);
+			$movies->setRating($_POST['rating']);
+			$movies->setRuntime($_POST['runtime']);
+			$movies->setTrailerUrl($_POST['trailerUrl']);
+			$movies->setDateCreated($_POST['dateCreated']);
+			$movies->setPlot($_POST['plot']);
+			// $movies->setImdbId($_POST['imdbId']);
+			$movies->setYear($_POST['year']);
 
-				// déclenche la validation de l'article retourne true ou false
-				if($movies->isValid()){
-
-				
-
+			// déclenche la validation de l'article retourne true ou false
+			if($movies->isValid()){
 			// demande au manger de sauvegarder l'instance
 				$moviesManager = new \Model\Manager\MoviesManager();
 				$moviesManager->create($movies);
 			}
-			}
-			View::show("movies_create.php","Publier un nouvel article !", ["movies" => $movies]);
+		}
+		View::show("createMovies.php","Publier un nouvel article !", ["movies" => $movies]);
 	
-    }
+	}
 public function toprated()
 	{
     $moviesManager = new MoviesManager();
@@ -144,46 +143,37 @@ public function toprated()
     }
 
 public function connexion(){
-		$moviesManager = new MoviesManager();
 		
-		$movies = $moviesManager->findTopRated();
-				$data =[
-			"movies" =>$movies,
-			
-		];
-			View::show("connexion.php", "connexion !",$data);
+		
+
+		
+			View::show("connexion.php", "connexion !");
 	}
 
 public function deconnexion(){
-		$moviesManager = new MoviesManager();
 		
-		$movies = $moviesManager->findTopRated();
-			View::show("deconnexion.php", "deconnexion !",["movies" => $movies]);
+		
+
+			View::show("deconnexion.php", "deconnexion !");
 	}
 
 
 
 public function inscription(){
-		$moviesManager = new MoviesManager();
-
-				$data =[
-		"movies" =>$movies,
 		
-		];
     
-		$movies = $moviesManager->findTopRated();
-		View::show("inscription.php", "inscription !",$data);
+		
+		View::show("inscription.php", "inscription !");
 	}
 
 
 
 public function researchResult(){
 		$moviesManager = new MoviesManager();
-		$movies = $moviesManager->findTopRated();
 		$search = $moviesManager->findTitleMovies();
 
 				$data =[
-			"movies" =>$movies,
+			// "movies" =>$movies,
 			"search"=>$search,
 		];
 		View::show("researchResult.php", "researchResult !",$data);
@@ -200,7 +190,7 @@ public function nav(){
 
 public function research(){
 		$moviesManager = new MoviesManager();
-		$movies = $moviesManager->findTopRated();
+
 		$search = $moviesManager->findTitleMovies();
 
 				$data =[
@@ -208,6 +198,24 @@ public function research(){
 			"search"=>$search,
 		];
 			View::show("researchResult.php", "researchResult !",$data);
+	}
+
+	public static function asideTopRated()
+	{
+    $moviesManager = new MoviesManager();
+    
+	$movies = $moviesManager->findTopRated();
+
+      include("app/templates/asideTopRated.php"); 
+    }
+
+	public static function countAll()
+	{
+	$moviesManager = new MoviesManager();
+    
+	$movies = $moviesManager->countAll();
+
+      include("app/templates/countall.php");	
 	}
 
 }
